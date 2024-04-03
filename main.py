@@ -29,17 +29,31 @@ def receive_data():
         data_Konduktivitas = data['data5']
     # Lakukan sesuatu dengan data yang diterima di sini
     
-    # Kirim balik respons ke JavaScript
-    hasil = round(model_fuzzy(float(data_suhu), int(data_Konduktivitas), int(data_BPM), int(data_Tekanan), float(data_SPO2)), 2)
-    if hasil >= 50:
-        hasil2 = True
-    else:
-        hasil2 = False 
-    
-    return jsonify({
-        'hasil1': hasil,
-        'hasil2': hasil2
-    })
+    # Lakukan sesuatu dengan data yang diterima di sini
+        if data['data6'] == 1:    
+            # Kirim balik respons ke JavaScript
+            hasil = round(model_fuzzy(float(data_suhu), int(data_Konduktivitas), int(data_BPM), int(data_Tekanan), float(data_SPO2)), 2)
+            if hasil >= 50:
+                hasil2 = True
+            else:
+                hasil2 = False 
+            
+            return jsonify({
+                'hasil1': hasil,
+                'hasil2': hasil2
+            })
+        else:
+            # Kirim balik respons ke JavaScript
+            hasil = round(model_fuzzy_akurat(float(data_suhu), int(data_Konduktivitas), int(data_BPM), int(data_Tekanan), float(data_SPO2)), 2)
+            if hasil >= 50:
+                hasil2 = True
+            else:
+                hasil2 = False 
+            
+            return jsonify({
+                'hasil1': hasil,
+                'hasil2': hasil2
+            })
 
 
 if __name__ == '__main__':
