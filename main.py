@@ -9,6 +9,13 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
+@app.route('/soal')
+def question():
+    return render_template('soal.html')
+
+@app.route('/hasil')
+def result():
+    return render_template('hasil.html')
 
 @app.route('/api/data', methods=['POST'])
 def receive_data():
